@@ -1,4 +1,4 @@
-import gradient from 'npm:gradient-string';
+import gradient from 'gradient-string';
 import chalk from 'chalk';
  const message = `
      ___                       _ _        

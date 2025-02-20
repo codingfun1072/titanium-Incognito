@@ -107,13 +107,14 @@ chmod +x ./incognito-linux
 
 #### Build & Run yourself
 
-Prerequisties:
-- Deno 2.0
+Prerequisites:
+- NodeJS
+- PNPM
 - Git
 
 1. Clone the repo
 ```bash
-git clone https://github.com/titaniumnetwork-dev/incognito.git
+git clone --depth 1 -b switch-to-node --single-branch https://github.com/codingfun1072/titanium-Incognito.git
 ```
 
 2. `cd` into the project
@@ -123,7 +124,7 @@ cd incognito
 
 3. Install the required deps:
 ```bash
-deno install --allow-scripts
+pnpm install
 ```
 
 4. Create a config.toml file
@@ -135,15 +136,17 @@ cp config.example.toml config.toml
 
 6. Build the frontend:
 ```bash
-deno task build
+pnpm run build
 ```
 
 7. Start the server!
 ```bash
-deno task start --server full # Can also be standalone for a smaller server with no wisp server.
+pnpm start --server full # Can also be standalone for a smaller server with no wisp server.
 
 # For help with the cli:
-deno task start --help OR deno task start
+pnpm start --help 
+# OR 
+pnpm start
 ```
 
 ---

@@ -14,8 +14,10 @@ interface Data {
     };
 }
 
+import * as fs from 'node:fs/promises';
+
 const config = async (configFile: string): Promise<Data> => {
-    const doc = await Deno.readTextFile(configFile);
+    const doc = await fs.readFile(configFile, { encoding: "utf8" });
     const parsedDoc = parse(doc) as unknown as Data;
 
     if (typeof parsedDoc.buildOpts !== "object") {

@@ -7,7 +7,7 @@ import Fastify from 'fastify';
 import { sFactory } from './serverFactory.ts';
 import { listeningMessage } from "../message.ts";
 import { config } from "../config/config.ts";
-import { fromFileUrl } from "jsr:@std/path";
+import { fromFileUrl } from "@std/path";
 
 const startServer = async (configPath: string, seo?: boolean) => {
     const parsedDoc = await config(configPath);
@@ -16,7 +16,7 @@ const startServer = async (configPath: string, seo?: boolean) => {
     const app = Fastify({ logger: false, serverFactory: serverFactory });
 
     await app.register(fastifyCookie, {
-        secret: Deno.env.get('COOKIE_SECRET') || 'yes',
+        secret: process.env['COOKIE_SECRET'] || 'yes',
         parseOptions: {}
     });
     await app.register(fastifyCompress, {
@@ -31,7 +31,7 @@ const startServer = async (configPath: string, seo?: boolean) => {
     if (seo || parsedDoc.seo.enabled) {
         await app.register(fastifyStatic, {
             root: `${distPath}/seo`,
-            constraints: { host: new URL(Deno.env.get('DOMAIN') || parsedDoc.seo.domain).host },
+            constraints: { host: new URL(process.env['DOMAIN'] || parsedDoc.seo.domain).host },
             etag: false,
             lastModified: false,
             decorateReply: false
@@ -45,7 +45,7 @@ const startServer = async (configPath: string, seo?: boolean) => {
         http2: false
     });
 
-    const port = parseInt(Deno.env.get('PORT') as string) || parsedDoc.server.port || 8000;
+    const port = parseInt(process.env['PORT'] as string) || parsedDoc.server.port || 8000;
 
     app.listen({ port: port, host: '0.0.0.0' }).then(() => {
         listeningMessage(port, "fastify");

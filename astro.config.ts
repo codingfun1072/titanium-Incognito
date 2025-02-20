@@ -13,10 +13,10 @@ import { viteStaticCopy } from 'vite-plugin-static-copy';
 //we need the buildOpts from here : D
 import { config } from './server/config/config.ts';
 const scramjetPath = `${import.meta.dirname}/vendor/scramjet/dist/`
-const parsedDoc = await config(`${Deno.cwd()}/config.toml`);
+const parsedDoc = await config(`${process.cwd()}/config.toml`);
 // https://astro.build/config
 export default defineConfig({
-    site: Deno.env.get('SITE') || 'https://localhost:8080',
+    site: process.env['SITE'] || 'https://localhost:8080',
     integrations: [
         tailwind(),
         robotsTxt(),
@@ -44,7 +44,7 @@ export default defineConfig({
             SEO: envField.boolean({
                 context: 'client',
                 access: 'public',
-                default: Boolean(Deno.env.get('SEO'))
+                default: Boolean(process.env['SEO'])
             })
         },
     },
