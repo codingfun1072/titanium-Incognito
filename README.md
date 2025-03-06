@@ -162,17 +162,17 @@ docker compose up
 
 - Prerequisites:
     - Git
-    - Deno 2.1.4 or newer
-    - Node.js & NPM
+    - Recent Node.js
+    - PNPM
 
 1. Clone the repo
 ```bash
-git clone https://github.com/titaniumnetwork-dev/incognito.git
+git clone --depth 1 -b node-0.1.0 --single-branch https://github.com/codingfun1072/titanium-Incognito.git
 ```
 
 2. Install all of the dependencies:
 ```bash
-deno install --allow-scripts # This flag is here due to sharp, bufferutil and some others
+pnpm install
 ```
 
 3. Create a `config.toml` file
@@ -184,12 +184,12 @@ cp config.example.toml config.toml
 
 5. Build the frontend
 ```bash
-deno task build
+pnpm run build
 ```
 
 6. Start the server
 ```bash
-deno task start --server full
+pnpm start --server full
 ```
 
 > [!NOTE]

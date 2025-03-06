@@ -1,3 +1,4 @@
+import "deno_shim"; 
 import sitemap from '@astrojs/sitemap';
 import tailwind from '@astrojs/tailwind';
 import { baremuxPath } from '@mercuryworkshop/bare-mux/node';

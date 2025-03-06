@@ -7,7 +7,7 @@ import Fastify from 'fastify';
 import { sFactory } from './serverFactory.ts';
 import { listeningMessage } from "../message.ts";
 import { config } from "../config/config.ts";
-import { fromFileUrl } from "jsr:@std/path";
+import { fromFileUrl } from "@std/path";
 
 const startServer = async (configPath: string, seo?: boolean) => {
     const parsedDoc = await config(configPath);

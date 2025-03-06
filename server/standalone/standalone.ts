@@ -1,9 +1,10 @@
-import { Hono } from 'jsr:@hono/hono';
-import { serveStatic } from 'jsr:@hono/hono/deno';
-import { compress } from 'jsr:@hono/hono/compress';
+import { Hono } from '@hono/hono';
+import { serve } from '@hono/node-server';
+import { serveStatic } from '@hono/node-server/serve-static';
+import { compress } from '@hono/hono/compress';
 import { listeningMessage } from '../message.ts';
 import { config } from '../config/config.ts';
-import { fromFileUrl } from 'jsr:@std/path';
+import { fromFileUrl } from '@std/path';
 
 const startServer = async (configPath: string, seo?: boolean) => {
     const parsedDoc = await config(configPath);
@@ -23,13 +24,13 @@ const startServer = async (configPath: string, seo?: boolean) => {
         }
     });
 
-    Deno.serve({
+    serve({
+        fetch: app.fetch,
         hostname: '0.0.0.0',
         port: parseInt(Deno.env.get('PORT') as string) || parsedDoc.server.port || 8000,
-        onListen() {
+    }, () => {
             listeningMessage(parseInt(Deno.env.get('PORT') as string) || parsedDoc.server.port || 8000, 'hono');
-        },
-    }, app.fetch);
+    });
 }
 
 export { startServer }

@@ -4,8 +4,8 @@ import {
     type FastifyServerFactory,
     FastifyServerFactoryHandler,
     RawServerDefault,
-} from 'npm:fastify';
-import wisp from 'npm:wisp-server-node';
+} from 'fastify';
+import wisp from 'wisp-server-node';
 import { config } from '../config/config.ts';
 
 const sFactory = async (configPath: string): Promise<FastifyServerFactory> => {

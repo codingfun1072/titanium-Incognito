@@ -1,13 +1,14 @@
+import "deno_shim"; 
 // A basic CLI to provide a custom config.toml & to choose between the two servers.
 // Hono or Fastify
 import chalk from 'chalk';
-import gradient from 'npm:gradient-string';
+import gradient from 'gradient-string';
 import { message, messageColors } from "./message.ts";
-import { parseArgs } from "jsr:@std/cli";
+import { parseArgs } from "@std/cli";
 import { startServer as HonoServer } from './standalone/standalone.ts';
 import { startServer as FastifyServer } from './full/server.ts';
-import { fromFileUrl } from 'jsr:@std/path';
-import ora, { Ora } from 'npm:ora';
+import { fromFileUrl } from '@std/path';
+import ora, { Ora } from 'ora';
 
 import packageJSON from "../package.json" with { type: 'json' };
 const { version } = packageJSON;

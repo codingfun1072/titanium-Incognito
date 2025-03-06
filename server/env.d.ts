@@ -1,2 +1,2 @@
-/// <reference types="npm:@types/node" />
-/// <reference types="npm:smol-toml" />
+/// <reference types="@types/node" />
+/// <reference types="smol-toml" />
